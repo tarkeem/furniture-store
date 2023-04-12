@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
+import 'package:furniture/forniture.dart';
 import 'package:vector_math/vector_math.dart' as vector;
 import 'dart:math' as math;
 
@@ -15,24 +16,29 @@ class mainpage extends StatefulWidget {
 }
 
 class _mainpageState extends State<mainpage> with TickerProviderStateMixin {
-  late AnimationController _animationController;
+  late AnimationController _animationController1;
   late AnimationController _animationController2;
   late AnimationController _animationController3;
-  late Animation _animation;
+  late Animation _animation1;
   late Animation _animation2;
-  List<Color> listColors=[Colors.red,Colors.pink,Colors.yellow,Colors.green];
-  int currIndex=0;
-  PageController ctr=PageController(viewportFraction: 0.7);
+  List<Color> listColors = [
+    Colors.purple,
+    Colors.yellow,
+    Colors.purple,
+    Colors.yellow
+  ];
+  int currIndex = 0;
+  PageController ctr = PageController(viewportFraction: 1);
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-    _animationController =
-        AnimationController(vsync: this, duration: Duration(seconds: 10))
+    _animationController1 =
+        AnimationController(vsync: this, duration: Duration(seconds: 20))
           ..repeat(reverse: true);
     _animationController2 =
-        AnimationController(vsync: this, duration: Duration(seconds: 5));
-    _animation = Tween<double>(
+        AnimationController(vsync: this, duration: Duration(seconds: 1));
+    _animation1 = Tween<double>(
       begin: 0.0,
       end: math.pi,
     ).animate(_animationController2);
@@ -50,9 +56,13 @@ class _mainpageState extends State<mainpage> with TickerProviderStateMixin {
     var devicesize = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
-        title: ElevatedButton(child:Text('data') ,onPressed: () {
-          ctr.nextPage(duration: Duration(seconds: 1), curve: Curves.decelerate);
-        },),
+        title: ElevatedButton(
+          child: Text('data'),
+          onPressed: () {
+            ctr.nextPage(
+                duration: Duration(seconds: 1), curve: Curves.decelerate);
+          },
+        ),
         leading: ElevatedButton(
           child: Text('sad'),
           onPressed: () {
@@ -61,7 +71,7 @@ class _mainpageState extends State<mainpage> with TickerProviderStateMixin {
         ),
       ),
       body: AnimatedBuilder(
-        animation: _animationController,
+        animation: _animationController1,
         builder: (context, child) => Container(
           color: Colors.black,
           child: Center(
@@ -108,64 +118,56 @@ class _mainpageState extends State<mainpage> with TickerProviderStateMixin {
                             ),
                           ),
                         ),
-                        //----------------------------------------------------elements
-                        /*AnimatedPositioned(
-                              duration: Duration(seconds: 1),
-                            left:start?0: (p1.maxWidth * 0.3)-(40*_animationController.value),
-                            top:start?0: (lerpDouble(p1.maxHeight * 0.3, p1.maxHeight * 0.4,
-                                _animationController.value)),
-                            child: Container(
-                              height: 50,
-                              width: 50,
-                              color: Colors.yellow,
-                            )),
-                             Positioned(
-                            left:start?0: (p1.maxWidth * 0.3),
-                            top:start?0: (lerpDouble(p1.maxHeight * 0.1, p1.maxHeight * 0.2,
-                                _animationController.value)),
-                            child: Container(
-                              height: 50,
-                              width: 50,
-                              color: Colors.yellow,
-                            )),
-                             Positioned(
-                            left:start?0: (p1.maxWidth * 0.2),
-                            top:start?0: (lerpDouble(p1.maxHeight * 0.3, p1.maxHeight * 0.4,
-                                _animationController.value)),
-                            child: Container(
-                              height: 50,
-                              width: 50,
-                              color: Colors.yellow,
-                            )),*/
                         //.............................................................................
-                      Positioned(child: PageView(
-                        
-                      ))
-
                       ],
                     ),
                   ),
                   Positioned(
-                      left: 0 * (p1.maxWidth * 0.3) -
-                          0 * (40 * _animationController.value),
+                      left: 0,
+                      top: p1.maxHeight * 0.3,
+                      child: Transform.translate(
+                        offset: Offset(
+                          p1.maxWidth *
+                              0.1 *
+                              math.cos(_animation1.value +
+                                  _animationController1.value),
+                          p1.maxHeight *
+                              0.3 *
+                              math.sin(_animation1.value +
+                                  _animationController1.value),
+                        ),
+                        child: Opacity(
+                          opacity: 1 - _animationController2.value,
+                          child: Container(
+                            height: 100,
+                            width: 100,
+                            child: Image.network(
+                              items[1].img3,
+                              color: Colors.purple,
+                            ),
+                          ),
+                        ),
+                      )),
+                  Positioned(
+                      left: 0,
                       top: p1.maxHeight * 0.3,
                       child: Transform.translate(
                         offset: Offset(
                           p1.maxWidth *
                               0.2 *
-                              math.cos(_animation.value +
-                                  _animationController.value),
+                              math.cos(_animation1.value +
+                                  _animationController1.value),
                           p1.maxHeight *
                               0.3 *
-                              math.sin(_animation.value +
-                                  _animationController.value),
+                              math.sin(_animation1.value +
+                                  _animationController1.value),
                         ),
                         child: Opacity(
-                          opacity: 1,
+                          opacity: 1 - _animationController2.value,
                           child: Container(
-                            height: 50,
-                            width: 50,
-                            color: Color.fromARGB(255, 255, 0, 0),
+                            height: 200,
+                            width: 200,
+                            child: Image.network(items[0].img1),
                           ),
                         ),
                       )),
@@ -176,154 +178,118 @@ class _mainpageState extends State<mainpage> with TickerProviderStateMixin {
                         offset: Offset(
                           p1.maxWidth *
                               0.1 *
-                              math.cos(_animation.value +
-                                  _animationController.value),
+                              math.cos(_animation1.value +
+                                  _animationController1.value),
                           p1.maxHeight *
                               0.3 *
-                              math.sin(_animation.value +
-                                  _animationController.value),
+                              math.sin(_animation1.value +
+                                  _animationController1.value),
                         ),
                         child: Opacity(
-                          opacity: 1,
+                          opacity: 1 - _animationController2.value,
                           child: Container(
-                            height: 50,
-                            width: 50,
-                            color: Color.fromARGB(255, 255, 0, 0),
+                            height: 200,
+                            width: 200,
+                            child: Image.network(items[0].img2),
                           ),
                         ),
                       )),
-                  Positioned(
-                      left: 0,
-                      top: p1.maxHeight * 0.3,
-                      child: Transform.translate(
-                        offset: Offset(
-                          p1.maxWidth *
-                              0.1 *
-                              math.cos(_animation.value +
-                                  _animationController.value),
-                          p1.maxHeight *
-                              0.3 *
-                              math.sin(_animation.value +
-                                  _animationController.value),
-                        ),
-                        child: Opacity(
-                          opacity: 1,
-                          child: Container(
-                            height: 50,
-                            width: 50,
-                            color: Color(0xFFFF0000),
-                          ),
-                        ),
-                      )),
+              
                   //.........................................................................
+
+                  Positioned(
+                      left: 0,
+                      top: p1.maxHeight * 0.3,
+                      child: Transform.translate(
+                        offset: Offset(
+                          p1.maxWidth *
+                              0.1 *
+                              math.cos(_animation2.value +
+                                  _animationController1.value),
+                          p1.maxHeight *
+                              0.3 *
+                              math.sin(_animation2.value +
+                                  _animationController1.value),
+                        ),
+                        child: Opacity(
+                          opacity: _animationController2.value,
+                          child: Container(
+                            height: 100,
+                            width: 100,
+                            child: Image.network(items[1].img3),
+                          ),
+                        ),
+                      )),
+
                   Positioned(
                       left: 0 * (p1.maxWidth * 0.3) -
-                          0 * (40 * _animationController.value),
-                      top: p1.maxHeight * 0.3,
+                          0 * (40 * _animationController1.value),
+                      top: 0,
                       child: Transform.translate(
                         offset: Offset(
                           p1.maxWidth *
                               0.2 *
                               math.cos(_animation2.value +
-                                  _animationController.value),
+                                  _animationController1.value),
                           p1.maxHeight *
                               0.3 *
                               math.sin(_animation2.value +
-                                  _animationController.value),
+                                  _animationController1.value),
                         ),
                         child: Opacity(
-                          opacity:
-                              1 + 0 * (_animationController2.value).toDouble(),
+                          opacity: _animationController2.value,
                           child: Container(
-                            height: 50,
-                            width: 50,
-                            color: Color.fromARGB(255, 0, 17, 255),
+                            height: 200,
+                            width: 200,
+                            child: Image.network(items[1].img1),
                           ),
                         ),
                       )),
                   Positioned(
-                      left: 0,
+                      left: -100,
                       top: p1.maxHeight * 0.1,
                       child: Transform.translate(
                         offset: Offset(
                           p1.maxWidth *
                               0.1 *
                               math.cos(_animation2.value +
-                                  _animationController.value),
+                                  _animationController1.value),
                           p1.maxHeight *
                               0.3 *
                               math.sin(_animation2.value +
-                                  _animationController.value),
+                                  _animationController1.value),
                         ),
                         child: Opacity(
-                          opacity: 1,
+                          opacity: _animationController2.value,
                           child: Container(
-                            height: 50,
-                            width: 50,
-                            color: Color.fromARGB(255, 0, 17, 255),
+                            height: 200,
+                            width: 200,
+                            child: Image.network(items[1].img2),
                           ),
                         ),
                       )),
+
+                  //.......................................................
+
                   Positioned(
-                      left: 0,
-                      top: p1.maxHeight * 0.3,
-                      child: Transform.translate(
-                        offset: Offset(
-                          p1.maxWidth *
-                              0.1 *
-                              math.cos(_animation2.value +
-                                  _animationController.value),
-                          p1.maxHeight *
-                              0.3 *
-                              math.sin(_animation2.value +
-                                  _animationController.value),
-                        ),
-                        child: Opacity(
-                          opacity: 1,
-                          child: Container(
-                            height: 50,
-                            width: 50,
-                            color: Color.fromARGB(255, 0, 17, 255),
-                          ),
-                        ),
-                      )),
-                      //.......................................................
-
-
-                      Positioned(
-                        bottom: 0,
-                        right: 0,
-                        height: p1.maxHeight*0.3,
-                        width: p1.maxHeight*0.3,
-                        child:PageView(
-                          allowImplicitScrolling: true,
-                          onPageChanged: (value) {
-                            startAnimation();
-                            setState(() {
-                              currIndex=value;
-                            });
-                          },
-                          controller: ctr,
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Container(color:listColors[0] ,),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Container(color:listColors[1] ,),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Container(color:listColors[2] ,),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Container(color:listColors[3] ,),
-                            ),
-
-                          ],
-                        ))
+                      bottom: 0,
+                      right: 0,
+                      height: p1.maxHeight * 0.3,
+                      width: p1.maxHeight * 0.3,
+                      child: PageView(
+                        allowImplicitScrolling: true,
+                        onPageChanged: (value) {
+                          startAnimation();
+                          setState(() {
+                            currIndex = value;
+                          });
+                        },
+                        controller: ctr,
+                        children: [
+                          fornitureItem(items[0]),
+                          fornitureItem(items[1])
+                        ],
+                      ))
                 ],
               );
             }),
@@ -335,14 +301,14 @@ class _mainpageState extends State<mainpage> with TickerProviderStateMixin {
 
   void startAnimation() {
     if (f) {
-      _animationController2 = AnimationController(
-          vsync: this, duration: Duration(seconds: 1));
-      _animation = Tween<double>(
+      _animationController2 =
+          AnimationController(vsync: this, duration: Duration(milliseconds: 700));
+      _animation1 = Tween<double>(
         begin: 0.0,
         end: math.pi,
       ).animate(_animationController2);
-      _animationController3 = AnimationController(
-          vsync: this, duration: Duration(seconds: 1));
+      _animationController3 =
+          AnimationController(vsync: this, duration: Duration(seconds: 1));
       _animation2 = Tween<double>(
         begin: -1 * math.pi,
         end: 0,
@@ -351,21 +317,21 @@ class _mainpageState extends State<mainpage> with TickerProviderStateMixin {
       _animationController3.forward();
       f = !f;
     } else {
-      _animationController2 = AnimationController(
-          vsync: this, duration: Duration(seconds: 1));
-      _animation = Tween<double>(
+      _animationController2 =
+          AnimationController(vsync: this, duration: Duration(seconds: 1));
+      _animation1= Tween<double>(
         begin: -1 * math.pi,
         end: 0,
       ).animate(_animationController2);
-      _animationController2 = AnimationController(
-          vsync: this, duration: Duration(seconds: 1));
-      _animation = Tween<double>(
+      _animationController2 =
+          AnimationController(vsync: this, duration: Duration(seconds: 1));
+      _animation1 = Tween<double>(
         begin: -1 * math.pi,
         end: 0,
       ).animate(_animationController2);
-    
-      _animationController3 = AnimationController(
-          vsync: this, duration: Duration(seconds: 1));
+
+      _animationController3 =
+          AnimationController(vsync: this, duration: Duration(seconds: 1));
       _animation2 = Tween<double>(
         begin: 0,
         end: math.pi,
@@ -374,5 +340,53 @@ class _mainpageState extends State<mainpage> with TickerProviderStateMixin {
       _animationController3.forward();
       f = !f;
     }
+  }
+
+  fornitureItem(Forniture item) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            
+               Expanded(
+                 child: Image.network(
+                  item.img1,
+                             ),
+               ),
+               Spacer(),
+              Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text('chair',style: TextStyle(fontStyle:FontStyle.italic,fontSize: 30),),
+                  Text('50\$',style: TextStyle(fontStyle:FontStyle.italic,fontSize: 20),)
+                ],
+              ),
+            
+          ],
+        ),
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            
+               Expanded(
+                 child: Image.network(
+                  item.img2,
+                             ),
+               ),
+               Spacer(),
+              Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text('sofa',style: TextStyle(fontStyle:FontStyle.italic,fontSize: 30),),
+                  Text('100\$',style: TextStyle(fontStyle:FontStyle.italic,fontSize: 20),)
+                ],
+              ),
+            
+          ],
+        ),
+      ],
+    );
   }
 }
