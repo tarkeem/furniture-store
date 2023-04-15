@@ -19,6 +19,29 @@ List<Forniture> items = [
       'https://th.bing.com/th/id/R.8cefca55648fcab21136a93d6c65e146?rik=c3%2bcFq3RwIZshA&pid=ImgRaw&r=0',
       'https://th.bing.com/th/id/R.25ca20c269ff1462440e4fdd10ef1e79?rik=kuC2Aifvb0QAPw&riu=http%3a%2f%2fwww.pngmart.com%2ffiles%2f7%2fYellow-Sofa-PNG-Image.png&ehk=zXOCcP6y8vnTbshlkiBKulHDp5cQLDs8pINqP0QPXKk%3d&risl=&pid=ImgRaw&r=0',
       'https://th.bing.com/th/id/R.436ac000a3dbfbef286cbde191a48bf2?rik=y2W1yffH42TT9Q&pid=ImgRaw&r=0&sres=1&sresct=1'),
- 
-
+  Forniture(
+      Colors.white,
+      'https://th.bing.com/th/id/OIP.CKJHqBvx03X_DlOQlHAOqwHaG9?pid=ImgDet&rs=1',
+      'https://th.bing.com/th/id/R.079be7d60c8216be470feac7de8d79d0?rik=2GF4Z4WRCfYGGQ&pid=ImgRaw&r=0',
+      'https://th.bing.com/th/id/R.436ac000a3dbfbef286cbde191a48bf2?rik=y2W1yffH42TT9Q&pid=ImgRaw&r=0&sres=1&sresct=1'),
+        Forniture(
+      Colors.yellow,
+      'https://th.bing.com/th/id/R.8cefca55648fcab21136a93d6c65e146?rik=c3%2bcFq3RwIZshA&pid=ImgRaw&r=0',
+      'https://th.bing.com/th/id/R.25ca20c269ff1462440e4fdd10ef1e79?rik=kuC2Aifvb0QAPw&riu=http%3a%2f%2fwww.pngmart.com%2ffiles%2f7%2fYellow-Sofa-PNG-Image.png&ehk=zXOCcP6y8vnTbshlkiBKulHDp5cQLDs8pINqP0QPXKk%3d&risl=&pid=ImgRaw&r=0',
+      'https://th.bing.com/th/id/R.436ac000a3dbfbef286cbde191a48bf2?rik=y2W1yffH42TT9Q&pid=ImgRaw&r=0&sres=1&sresct=1'),
+        Forniture(
+      Color.fromARGB(255, 105, 225, 24),
+      'https://th.bing.com/th/id/R.8cefca55648fcab21136a93d6c65e146?rik=c3%2bcFq3RwIZshA&pid=ImgRaw&r=0',
+      'https://th.bing.com/th/id/R.25ca20c269ff1462440e4fdd10ef1e79?rik=kuC2Aifvb0QAPw&riu=http%3a%2f%2fwww.pngmart.com%2ffiles%2f7%2fYellow-Sofa-PNG-Image.png&ehk=zXOCcP6y8vnTbshlkiBKulHDp5cQLDs8pINqP0QPXKk%3d&risl=&pid=ImgRaw&r=0',
+      'https://th.bing.com/th/id/R.436ac000a3dbfbef286cbde191a48bf2?rik=y2W1yffH42TT9Q&pid=ImgRaw&r=0&sres=1&sresct=1'),
+        Forniture(
+      Color.fromARGB(255, 138, 15, 85),
+      'https://th.bing.com/th/id/R.8cefca55648fcab21136a93d6c65e146?rik=c3%2bcFq3RwIZshA&pid=ImgRaw&r=0',
+      'https://th.bing.com/th/id/R.25ca20c269ff1462440e4fdd10ef1e79?rik=kuC2Aifvb0QAPw&riu=http%3a%2f%2fwww.pngmart.com%2ffiles%2f7%2fYellow-Sofa-PNG-Image.png&ehk=zXOCcP6y8vnTbshlkiBKulHDp5cQLDs8pINqP0QPXKk%3d&risl=&pid=ImgRaw&r=0',
+      'https://th.bing.com/th/id/R.436ac000a3dbfbef286cbde191a48bf2?rik=y2W1yffH42TT9Q&pid=ImgRaw&r=0&sres=1&sresct=1'),
+        Forniture(
+      Color.fromARGB(255, 9, 206, 170),
+      'https://th.bing.com/th/id/R.8cefca55648fcab21136a93d6c65e146?rik=c3%2bcFq3RwIZshA&pid=ImgRaw&r=0',
+      'https://th.bing.com/th/id/R.25ca20c269ff1462440e4fdd10ef1e79?rik=kuC2Aifvb0QAPw&riu=http%3a%2f%2fwww.pngmart.com%2ffiles%2f7%2fYellow-Sofa-PNG-Image.png&ehk=zXOCcP6y8vnTbshlkiBKulHDp5cQLDs8pINqP0QPXKk%3d&risl=&pid=ImgRaw&r=0',
+      'https://th.bing.com/th/id/R.436ac000a3dbfbef286cbde191a48bf2?rik=y2W1yffH42TT9Q&pid=ImgRaw&r=0&sres=1&sresct=1'),
 ];
