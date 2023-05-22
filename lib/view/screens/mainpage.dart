@@ -6,6 +6,7 @@ import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import 'package:furniture/module/forniture.dart';
 import 'package:furniture/view/widgets/fornitureItem.dart';
+import 'package:furniture/view/widgets/sphere.dart';
 import 'package:vector_math/vector_math.dart' as vector;
 import 'dart:math' as math;
 
@@ -57,23 +58,7 @@ class _mainpageState extends State<mainpage> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     var devicesize = MediaQuery.of(context).size;
     return Scaffold(
-      appBar: AppBar(
-        title: ElevatedButton(
-          child: Text('data'),
-          onPressed: () {
-            ctr.nextPage(
-                duration: Duration(seconds: 1), curve: Curves.decelerate);
-            ctr2.nextPage(
-                duration: Duration(seconds: 1), curve: Curves.decelerate);
-          },
-        ),
-        leading: ElevatedButton(
-          child: Text('sad'),
-          onPressed: () {
-            startAnimation();
-          },
-        ),
-      ),
+     
       body: AnimatedBuilder(
         animation: _animationController1,
         builder: (context, child) => Container(
@@ -89,7 +74,25 @@ class _mainpageState extends State<mainpage> with TickerProviderStateMixin {
                     insideBlock(devicesize, p1),
                     ...firstSetWid(p1),
                     ...secondSetWid(p1),
-                    scrollSetWid(p1)
+                    scrollSetWid(p1),
+                    Positioned(
+                      left: 0,
+                      right: 0,
+                      top: 0,
+                      bottom: 0,
+                      child: GestureDetector(
+                        onHorizontalDragUpdate: (details) {
+                          print(details.primaryDelta);
+                          if(details.primaryDelta!>6)
+                          {
+            ctr.nextPage(
+                duration: Duration(seconds: 1), curve: Curves.decelerate);
+            ctr2.nextPage(
+                duration: Duration(seconds: 1), curve: Curves.decelerate);
+          
+                          }
+                        },
+                      ))
                   ],
                 );
               }),
@@ -112,7 +115,7 @@ class _mainpageState extends State<mainpage> with TickerProviderStateMixin {
           onPageChanged: (value) {
             startAnimation();
             setState(() {
-              currIndex = value;
+              currIndex=value;
             });
           },
           controller: ctr,
@@ -129,20 +132,35 @@ class _mainpageState extends State<mainpage> with TickerProviderStateMixin {
             offset: Offset(
               p1.maxWidth *
                   0.1 *
-                  math.cos(_animation2.value + _animationController1.value),
+                  math.cos(_animation2.value + _animationController1.value*-4),
               p1.maxHeight *
                   0.3 *
-                  math.sin(_animation2.value + _animationController1.value),
+                  math.sin(_animation2.value + _animationController1.value*-4),
             ),
             child: Opacity(
               opacity: _animation1.value.abs() / math.pi,
-              child: Container(
-                height: 100,
-                width: 100,
-                child: Image.network(items[secondSet].img3),
+              child:  sphere(60,items[secondSet].col),
               ),
             ),
-          )),
+          ),
+           Positioned(
+          left: 0,
+          top: p1.maxHeight * 0.3,
+          child: Transform.translate(
+            offset: Offset(
+              p1.maxWidth *
+                  0.1 *
+                  math.cos(_animation2.value + _animationController1.value*1.5),
+              p1.maxHeight *
+                  0.3 *
+                  math.sin(_animation2.value + _animationController1.value*1.5),
+            ),
+            child: Opacity(
+              opacity: _animation1.value.abs() / math.pi,
+              child:  sphere(120,items[secondSet].col),
+              ),
+            ),
+          ),
       Positioned(
           left:
               0 * (p1.maxWidth * 0.3) - 0 * (40 * _animationController1.value),
@@ -191,53 +209,42 @@ class _mainpageState extends State<mainpage> with TickerProviderStateMixin {
 
   List<Widget> firstSetWid(BoxConstraints p1) {
     return [
-      Positioned(
+    Positioned(
           left: 0,
           top: p1.maxHeight * 0.3,
           child: Transform.translate(
             offset: Offset(
               p1.maxWidth *
                   0.1 *
-                  math.cos(_animation1.value + _animationController1.value * 4),
+                  math.cos(_animation2.value + _animationController1.value*-4),
               p1.maxHeight *
                   0.3 *
-                  math.sin(_animation1.value + _animationController1.value),
+                  math.sin(_animation2.value + _animationController1.value*-4),
             ),
-            child: AnimatedBuilder(
-              animation: _animation1,
-              builder: (context, child) => Opacity(
-                opacity: 1 - _animation1.value.abs() / math.pi,
-                child: Container(
-                  height: 100,
-                  width: 100,
-                  child: Image.network(
-                    items[firstSet].img3,
-                  ),
-                ),
+            child: Opacity(
+              opacity:1- _animation1.value.abs() / math.pi,
+              child:  sphere(60,items[firstSet].col),
               ),
             ),
-          )),
-      Positioned(
+          ),
+           Positioned(
           left: 0,
-          top: p1.maxHeight * 0.1,
+          top: p1.maxHeight * 0.3,
           child: Transform.translate(
             offset: Offset(
               p1.maxWidth *
                   0.1 *
-                  math.cos(_animation1.value + _animationController1.value),
+                  math.cos(_animation2.value + _animationController1.value*1.5),
               p1.maxHeight *
-                  0.4 *
-                  math.sin(_animation1.value + _animationController1.value),
+                  0.3 *
+                  math.sin(_animation2.value + _animationController1.value*1.5),
             ),
             child: Opacity(
-              opacity: 1 - _animation1.value.abs() / math.pi,
-              child: Container(
-                height: 200,
-                width: 200,
-                child: Image.network('assets/sphere_3d_shape (1).png'),
+              opacity:1- _animation1.value.abs() / math.pi,
+              child:  sphere(120,items[firstSet].col),
               ),
             ),
-          )),
+          ),
       Positioned(
           left: 0,
           top: p1.maxHeight * 0.3,
@@ -336,7 +343,7 @@ class _mainpageState extends State<mainpage> with TickerProviderStateMixin {
                   return Text(
                     'BRAND $index',
                     style:
-                        TextStyle(fontSize: 40, fontFamily: 'BloodySunday'),
+                        TextStyle(fontSize: 40, fontFamily: 'BloodySunday '),
                   );
                 },
               ),
