@@ -1,5 +1,5 @@
   import 'package:flutter/material.dart';
-import 'package:furniture/module/forniture.dart';
+import 'package:furniture_store/module/forniture.dart';
   
   
   fornitureItem(Forniture item) {
@@ -10,7 +10,7 @@ import 'package:furniture/module/forniture.dart';
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Expanded(
-              child: Image.network(
+              child: Image.asset(
                 item.img1,
               ),
             ),
@@ -20,11 +20,11 @@ import 'package:furniture/module/forniture.dart';
               children: [
                 Text(
                   'chair',
-                  style: TextStyle(fontStyle: FontStyle.italic, fontSize: 30),
+                  style: TextStyle(fontStyle: FontStyle.italic, fontSize: 30,fontFamily: 'fo'),
                 ),
                 Text(
                   '50\$',
-                  style: TextStyle(fontStyle: FontStyle.italic, fontSize: 20),
+                  style: TextStyle(fontStyle: FontStyle.italic, fontSize: 20,fontFamily: 'fo'),
                 )
               ],
             ),
@@ -34,7 +34,7 @@ import 'package:furniture/module/forniture.dart';
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Expanded(
-              child: Image.network(
+              child: Image.asset(
                 item.img2,
               ),
             ),
@@ -44,11 +44,11 @@ import 'package:furniture/module/forniture.dart';
               children: [
                 Text(
                   'sofa',
-                  style: TextStyle(fontStyle: FontStyle.italic, fontSize: 30),
+                  style: TextStyle(fontStyle: FontStyle.italic, fontSize: 30,fontFamily: 'fo'),
                 ),
                 Text(
                   '100\$',
-                  style: TextStyle(fontStyle: FontStyle.italic, fontSize: 20),
+                  style: TextStyle(fontStyle: FontStyle.italic, fontSize: 20,fontFamily: 'fo'),
                 )
               ],
             ),

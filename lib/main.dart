@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:furniture/view/screens/mainpage.dart';
-import 'package:furniture/r.dart';
-import 'package:furniture/view/screens/orderScreen.dart';
+import 'package:furniture_store/view/screens/mainpage.dart';
 
 void main() {
   runApp(const MyApp());

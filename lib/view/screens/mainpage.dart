@@ -4,9 +4,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:furniture/module/forniture.dart';
-import 'package:furniture/view/widgets/fornitureItem.dart';
-import 'package:furniture/view/widgets/sphere.dart';
+import 'package:furniture_store/module/forniture.dart';
+import 'package:furniture_store/view/widgets/fornitureItem.dart';
+import 'package:furniture_store/view/widgets/sphere.dart';
 import 'package:vector_math/vector_math.dart' as vector;
 import 'dart:math' as math;
 
@@ -58,7 +58,6 @@ class _mainpageState extends State<mainpage> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     var devicesize = MediaQuery.of(context).size;
     return Scaffold(
-     
       body: AnimatedBuilder(
         animation: _animationController1,
         builder: (context, child) => Container(
@@ -107,8 +106,8 @@ class _mainpageState extends State<mainpage> with TickerProviderStateMixin {
     return Positioned(
         bottom: 0,
         right: 0,
-        height: p1.maxHeight * 0.3,
-        width: p1.maxHeight * 0.3,
+        height: p1.maxHeight * 0.4,
+        width: p1.maxHeight * 0.4,
         child: PageView.builder(
           itemCount: items.length,
           allowImplicitScrolling: true,
@@ -179,7 +178,7 @@ class _mainpageState extends State<mainpage> with TickerProviderStateMixin {
               child: Container(
                 height: 200,
                 width: 200,
-                child: Image.network(items[secondSet].img1),
+                child: Image.asset(items[secondSet].img1),
               ),
             ),
           )),
@@ -200,7 +199,7 @@ class _mainpageState extends State<mainpage> with TickerProviderStateMixin {
               child: Container(
                 height: 200,
                 width: 200,
-                child: Image.network(items[secondSet].img2),
+                child: Image.asset(items[secondSet].img2),
               ),
             ),
           ))
@@ -262,7 +261,7 @@ class _mainpageState extends State<mainpage> with TickerProviderStateMixin {
               child: Container(
                 height: 200,
                 width: 200,
-                child: Image.network(items[firstSet].img1),
+                child: Image.asset(items[firstSet].img1),
               ),
             ),
           )),
@@ -283,7 +282,7 @@ class _mainpageState extends State<mainpage> with TickerProviderStateMixin {
               child: Container(
                 height: 200,
                 width: 200,
-                child: Image.network(items[firstSet].img2),
+                child: Image.asset(items[firstSet].img2),
               ),
             ),
           ))
@@ -341,9 +340,9 @@ class _mainpageState extends State<mainpage> with TickerProviderStateMixin {
                 controller: ctr2,
                 itemBuilder: (context, index) {
                   return Text(
-                    'BRAND $index',
+                    'BRAND ${index+1}',
                     style:
-                        TextStyle(fontSize: 40, fontFamily: 'BloodySunday '),
+                        TextStyle(fontSize: 40, fontFamily: 'fo'),
                   );
                 },
               ),
